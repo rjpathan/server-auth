@@ -213,5 +213,5 @@ class ResUsers(models.Model):
     def _set_encrypted_password(self, uid, pw):
         """It saves password crypt history for history rules"""
         res = super(ResUsers, self)._set_encrypted_password(uid, pw)
-        self.write({"password_history_ids": [(0, 0, {"password_crypt": pw})]})
+        self.sudo().write({"password_history_ids": [(0, 0, {"password_crypt": pw})]})
         return res
